@@ -1,0 +1,40 @@
+#color_me li{
+  display:block;
+  width:13%;
+  float:left;
+  height:200px;
+  border:solid black 2px;
+  margin:2px;
+}
+
+#get_color{
+  border-radius: 10px;
+  border: red solid 2px;
+  background: red;
+  color:white;
+  margin:10px auto;
+  display:inline-block;
+  padding:5px;
+ }
+
+.column-div {
+  border: red solid 2px;
+  width: 13%;
+  height: 30em;
+  float: left;
+}
+
+.row-div {
+  display: block;
+  border: black solid 2px;
+  height: 5em;
+
+}
+
+.circle-shape {
+  display: block;
+  width: 500px;
+  height: 500px;
+  border-radius: 100%;
+  background-color: green;
+}
