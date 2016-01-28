@@ -7,7 +7,6 @@ MVP
 - can't place piece into filled column (or spot)
 - notified when won, lost, or board is full
 - 2 players can play on the same browser
-- 
 
 Ice box
 - Styled board
