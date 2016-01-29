@@ -42,6 +42,8 @@
   border-radius: 100%;
 }
 
+.black-background { background-color: black; }
+
 .fifty-percent-size {
   width: 50%;
   height: auto;

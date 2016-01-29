@@ -33,10 +33,14 @@ $(document).ready(function(){
         //adds piece to board
         board[column].push(color);
         var row = board[column].length - 1;
+
+        var relX = e.pageX - parentOffset.left + wrapper.scrollLeft();
+        var relY = e.pageY - parentOffset.top + wrapper.scrollTop();
+
         if (color === 'red'){
           $('#c' + column + '-' + row).append('<img src="https://scontent-lga3-1.xx.fbcdn.net/hprofile-xpt1/v/t1.0-1/p160x160/11855885_10100926718367775_5383542053096323050_n.jpg?oh=999ca0e8dedca9ddb002bc335b8f141c&oe=573FE88A" class="circle-img"/>');
         } else {
-          $('#c' + column + '-' + row).css('background-color', color);
+          $('#c' + column + '-' + row).append("<div class='circle-img black-background'></div>");
         }
       }
       checkForWin(column, row);
