@@ -12,6 +12,10 @@
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff53d', endColorstr='#ffb029', GradientType=1 );
 }
 
+#board {
+  min-width: 42em;
+}
+
 .column-div {
   width: 6em;
   height: auto;

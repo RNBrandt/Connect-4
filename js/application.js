@@ -20,6 +20,7 @@ $(document).ready(function(){
   ];
 
   var turns = 0;
+  var game_finished;
 
   $('.column-div').on('click', function(){
     //gives us column that was clicked on
@@ -37,14 +38,32 @@ $(document).ready(function(){
         $('#c' + column + '-' + row).css('background-color', color);
       }
     }
-
-    checkDiagonals(column, row);
-    checkRows(row);
-    console.log(board);
-    var columnString = stringColumn(column);
-    checkRed(columnString);
-    checkBlack(columnString);
+    checkForWin(column, row);
   });
+
+  var checkForWin = function(c, r){
+    if(!!checkDiagonals(c, r)){
+      console.log(checkDiagonals(c, r))
+    }
+    if(!!checkRows(r)){
+      console.log(checkRows(r))
+    }
+    if(!!checkColumns(c)){
+      console.log(checkColumns(c))
+    }
+  }
+    // take target array and turn it into a string (ex string(7)
+    // then and deliver that array to the check red/ check black methods
+
+  var checkColumns = function(c){
+    var column = c;
+    var arrayString = String(board[column]);
+    if(!!checkRed(arrayString)){
+      return "red";
+    } else if (!!checkBlack(arrayString)) {
+      return "black";
+    }
+  };
 
   var checkRows = function(r){
     var row = r;
@@ -54,13 +73,19 @@ $(document).ready(function(){
       rowArray.push(board[i][row]);
     }
     var arrayString = String(rowArray);
-    checkRed(arrayString);
-    checkBlack(arrayString);
+    if(!!checkRed(arrayString)){
+      return "red";
+    } else if (!!checkBlack(arrayString)) {
+      return "black";
+    }
   };
 
   var checkDiagonals = function(c, r){
-    diagonalBaseLeft(c, r);
-    diagonalBaseRight(c, r);
+    if(!!diagonalBaseLeft(c, r)){
+      return diagonalBaseLeft(c, r);
+    } else if (!!diagonalBaseRight(c, r)){
+      return diagonalBaseRight(c, r);
+    }
   };
 
   var diagonalBaseLeft = function(c, r){
@@ -72,8 +97,11 @@ $(document).ready(function(){
     }
     // console.log('column=' + column + 'row=' + row + 'base left');
     var arrayString = diagonalLeftArray(column, row);
-    checkRed(arrayString);
-    checkBlack(arrayString);
+    if(!!checkRed(arrayString)){
+      return "red";
+    } else if (!!checkBlack(arrayString)) {
+      return "black";
+    }
   }
 
    var diagonalLeftArray = function(c, r) {
@@ -96,10 +124,13 @@ $(document).ready(function(){
       column += 1;
       row -= 1;
     }
-    console.log('column=' + column + 'row=' + row +'base right')
+    // console.log('column=' + column + 'row=' + row +'base right')
     var arrayString = diagonalRightArray(column, row);
-    checkRed(arrayString);
-    checkBlack(arrayString);
+    if(!!checkRed(arrayString)){
+      return "red";
+    } else if (!!checkBlack(arrayString)) {
+      return "black";
+    }
   };
 
   var diagonalRightArray = function(c, r) {
@@ -117,25 +148,17 @@ $(document).ready(function(){
 
   var checkRed = function(string) {
     if(string.match('red,red,red,red')){
-      alert("RED WINNNNSSSSS!!!!!");
+      // alert("RED WINNNNSSSSS!!!!!");
+      return "red";
     }
   };
 
   var checkBlack = function(string) {
     if(string.match('black,black,black,black')){
-      alert("BLACK WINNNNSSSSS!!!!!")
+      // alert("BLACK WINNNNSSSSS!!!!!")
+      return "black";
     }
   };
-  // take target array and turn it into a string (ex string(7)
-    // then and deliver that array to the check red/ check black methods
-
-  var stringColumn = function(c){
-    var column = c;
-    var columnString = String(board[column]);
-    return columnString;
-  };
-
-
 });
 
 
