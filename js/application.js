@@ -20,31 +20,46 @@ $(document).ready(function(){
   ];
 
   var turns = 0;
+  var game_finished;
 
   $('.column-div').on('click', function(){
     //gives us column that was clicked on
-    var column = parseInt($(this).attr('id').slice(-1));
-    //alternates red and black pieces depending on turn count
-    if (board[column].length < 6){
-      turns += 1;
-      var color = (turns % 2) ? "red" : "black";
-      //adds piece to board
-      board[column].push(color);
-      var row = board[column].length - 1;
-      if (color === 'red'){
-        $('#c' + column + '-' + row).append('<img src="https://scontent-lga3-1.xx.fbcdn.net/hprofile-xpt1/v/t1.0-1/p160x160/11855885_10100926718367775_5383542053096323050_n.jpg?oh=999ca0e8dedca9ddb002bc335b8f141c&oe=573FE88A"/>');
-      } else {
-        $('#c' + column + '-' + row).css('background-color', color);
+    if(!game_finished) {
+      var column = parseInt($(this).attr('id').slice(-1));
+      //alternates red and black pieces depending on turn count
+      if (board[column].length < 6){
+        turns += 1;
+        var color = (turns % 2) ? "red" : "black";
+        //adds piece to board
+        board[column].push(color);
+        var row = board[column].length - 1;
+        if (color === 'red'){
+          $('#c' + column + '-' + row).append('<img src="https://scontent-lga3-1.xx.fbcdn.net/hprofile-xpt1/v/t1.0-1/p160x160/11855885_10100926718367775_5383542053096323050_n.jpg?oh=999ca0e8dedca9ddb002bc335b8f141c&oe=573FE88A"/>');
+        } else {
+          $('#c' + column + '-' + row).css('background-color', color);
+        }
+      }
+      checkForWin(column, row);
+      if(!!game_finished){
+        console.log(game_finished);
       }
     }
-
-    checkDiagonals(column, row);
-    checkRows(row);
-    console.log(board);
-    var columnString = stringColumn(column);
-    checkRed(columnString);
-    checkBlack(columnString);
   });
+
+  var checkForWin = function(c, r){
+    checkDiagonals(c, r);
+    checkRows(r);
+    checkColumns(c);
+  }
+    // take target array and turn it into a string (ex string(7)
+    // then and deliver that array to the check red/ check black methods
+
+  var checkColumns = function(c){
+    var column = c;
+    var arrayString = String(board[column]);
+    checkRed(arrayString);
+    checkBlack(arrayString)
+  };
 
   var checkRows = function(r){
     var row = r;
@@ -96,7 +111,7 @@ $(document).ready(function(){
       column += 1;
       row -= 1;
     }
-    console.log('column=' + column + 'row=' + row +'base right')
+    // console.log('column=' + column + 'row=' + row +'base right')
     var arrayString = diagonalRightArray(column, row);
     checkRed(arrayString);
     checkBlack(arrayString);
@@ -117,15 +132,15 @@ $(document).ready(function(){
 
   var checkRed = function(string) {
     if(string.match('red,red,red,red')){
-      overlayHunterWins.appendTo(document.body);
-      // alert("RED WINNNNSSSSS!!!!!");
+      game_finished = "YOU'VE BEEN HUNTED!!!!!!";
+      jQuery('<div class="overlay"><p><a href="#">' + game_finished + '</a></p></div>').appendTo(document.body);
     }
   };
 
   var checkBlack = function(string) {
     if(string.match('black,black,black,black')){
-      overlayBlackWins.appendTo(document.body);
-      // alert("BLACK WINNNNSSSSS!!!!!")
+      game_finished = "BLACKNESS WINS!!!!!!";
+      jQuery('<div class="overlay"><p><a href="#">' + game_finished + '</a></p></div>').appendTo(document.body);
     }
   };
   // take target array and turn it into a string (ex string(7)
@@ -136,11 +151,6 @@ $(document).ready(function(){
     var columnString = String(board[column]);
     return columnString;
   };
-
-  var overlayBlackWins = jQuery('<div class="overlay"><p><a href="#">BLACK WINNNNSSSSS!!!!!</a></p></div>');
-
-  var overlayHunterWins = jQuery("<div class='overlay'><p><a href='#'>YOU'VE BEEN HUNTED!!!!!</a></p></div>");
-
 });
 
 
