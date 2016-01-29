@@ -43,13 +43,19 @@ $(document).ready(function(){
         }
       }
       checkForWin(column, row);
-      if(!!game_finished){
-        console.log(game_finished);
-      }
-    } else {
-
+      // if(!!game_finished){
+      //   console.log(game_finished);
+      // }
     }
   });
+
+  // if(!!game_finished) {
+  //   console.log("test")
+  //   $('body').on('click', function(){
+  //     debugger;
+  //     $('.overlay-words').remove();
+  //   })
+  // }
 
   var checkForWin = function(c, r){
     checkDiagonals(c, r);
@@ -139,6 +145,9 @@ $(document).ready(function(){
     if(string.match('red,red,red,red')){
       game_finished = "YOU'VE BEEN HUNTED!!!!!!";
       jQuery('<div class="overlay-words overlay">' + game_finished + '<img src="https://scontent-lga3-1.xx.fbcdn.net/hprofile-xpt1/v/t1.0-1/p160x160/11855885_10100926718367775_5383542053096323050_n.jpg?oh=999ca0e8dedca9ddb002bc335b8f141c&oe=573FE88A" class="fifty-percent-size"/></div>').appendTo(document.body);
+      setTimeout(function() {
+        $('.overlay-words.overlay').fadeOut('slow');
+      }, 2000);
     }
   };
 
@@ -146,6 +155,9 @@ $(document).ready(function(){
     if(string.match('black,black,black,black')){
       game_finished = "BLACKNESS WINS!!!!!!";
       jQuery('<div class="overlay-words overlay">' + game_finished + '</div>').appendTo(document.body);
+      setTimeout(function() {
+        $('.overlay-words.overlay').fadeOut('slow');
+      }, 2000);
     }
   };
   // take target array and turn it into a string (ex string(7)
