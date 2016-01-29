@@ -13,11 +13,11 @@
 }
 
 body {
-  width: 42em;
+  width: 45em;
   margin: 0 auto;
 }
 #board {
-  width: 42em;
+  width: 45em;
   clear: both;
 }
 
@@ -29,8 +29,12 @@ body {
 
 .row-div {
   display: block;
-  /*border: black solid 2px;*/
   height: 6em;
+}
+
+.no-background {
+  height: 4em;
+  background-color: white;
 }
 /*
 .circle-shape {
@@ -85,4 +89,17 @@ h1 {
   float: right;
   margin-top: 50px;
   margin-right: 50px;
+}
+/*
+div.column-div:hover {
+  box-shadow: 0 0 5px #98FB98;
+  border: 1px solid green;
+}*/
+
+.token {
+  width: 3em;
+  height: auto;
+  border-radius: 100%;
+  display: block;
+  margin: auto;
 }

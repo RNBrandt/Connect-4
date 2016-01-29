@@ -4,8 +4,12 @@ $(document).ready(function(){
 
     $("#board").append("<div class='column-div yellow-background-gradient' id=" + thisColumn + "></div>");
 
-        for (var j=5; j>=0; j--) {
-      $('#' + thisColumn).append("<div class='row-div' id=" + thisColumn + "-" + j + "></div>");
+    for (var j=6; j>=0; j--) {
+      if(j === 6){
+        $('#' + thisColumn).append("<div class='row-div no-background' id=" + thisColumn + "-" + j + "></div>");
+      } else {
+        $('#' + thisColumn).append("<div class='row-div' id=" + thisColumn + "-" + j + "></div>");
+      }
     }
   }
 
@@ -23,6 +27,29 @@ $(document).ready(function(){
   var game_finished;
   $('#turn-counter').html("Player 1 Turn");
 
+  var hover_effect = function(){
+    if(turns % 2 === 0) {
+      $('.column-div').hover(function() {
+        var column = parseInt($(this).attr('id').slice(-1));
+        $('#c' + column + '-6').html('<img src="https://scontent-lga3-1.xx.fbcdn.net/hprofile-xpt1/v/t1.0-1/p160x160/11855885_10100926718367775_5383542053096323050_n.jpg?oh=999ca0e8dedca9ddb002bc335b8f141c&oe=573FE88A" class="token"/>')
+      }, function() {
+        var column = parseInt($(this).attr('id').slice(-1));
+        $('#c' + column + '-6').empty();
+      });
+    } else {
+      $('.column-div').hover(function() {
+        var column = parseInt($(this).attr('id').slice(-1));
+        $('#c' + column + '-6').html('<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQ1mB6fWO499QeabseMxpa67okKCEI6-0joJSRhBC-uDa98cn1ctg" class="token"/>')
+      }, function() {
+        var column = parseInt($(this).attr('id').slice(-1));
+        $('#c' + column + '-6').empty();
+      });
+    }
+  }
+
+  hover_effect();
+
+
   $('.column-div').on('click', function(){
     //gives us column that was clicked on
     if(!game_finished) {
@@ -37,25 +64,17 @@ $(document).ready(function(){
         if (color === 'red'){
           $('#c' + column + '-' + row).append('<img src="https://scontent-lga3-1.xx.fbcdn.net/hprofile-xpt1/v/t1.0-1/p160x160/11855885_10100926718367775_5383542053096323050_n.jpg?oh=999ca0e8dedca9ddb002bc335b8f141c&oe=573FE88A" class="circle-img"/>');
           $('#turn-counter').html("Player 2 Turn");
+          $('#c' + column + '-6').empty();
         } else {
-          $('#c' + column + '-' + row).css('background-color', color);
+          $('#c' + column + '-' + row).append('<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQ1mB6fWO499QeabseMxpa67okKCEI6-0joJSRhBC-uDa98cn1ctg" class="circle-img"/>');
           $('#turn-counter').html("Player 1 Turn");
+          $('#c' + column + '-6').empty();
         }
       }
       checkForWin(column, row);
-      // if(!!game_finished){
-      //   console.log(game_finished);
-      // }
+      hover_effect();
     }
   });
-
-  // if(!!game_finished) {
-  //   console.log("test")
-  //   $('body').on('click', function(){
-  //     debugger;
-  //     $('.overlay-words').remove();
-  //   })
-  // }
 
   var checkForWin = function(c, r){
     checkDiagonals(c, r);
@@ -153,7 +172,7 @@ $(document).ready(function(){
 
   var checkBlack = function(string) {
     if(string.match('black,black,black,black')){
-      game_finished = "BLACKNESS WINS!!!!!!";
+      game_finished = "THE HUNTER HAS BECOME THE HUNTED!!!!!!";
       jQuery('<div class="overlay-words overlay">' + game_finished + '</div>').appendTo(document.body);
       setTimeout(function() {
         $('.overlay-words.overlay').fadeOut('slow');
