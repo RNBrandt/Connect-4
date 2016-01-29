@@ -1,3 +1,5 @@
+// https://scontent-lga3-1.xx.fbcdn.net/hprofile-xpt1/v/t1.0-1/p160x160/11855885_10100926718367775_5383542053096323050_n.jpg?oh=999ca0e8dedca9ddb002bc335b8f141c&oe=573FE88A
+
 $(document).ready(function(){
   var arrayOfColumnNames = [
     "c0",
@@ -45,12 +47,27 @@ $(document).ready(function(){
       $('#c' + column + '-' + row).css('background-color', color);
 
     }
-    console.log(column);
-    console.log(row);
-    diagonalBaseLeft(column, row);
-    diagonalBaseRight(column,row);
+    checkDiagonals(column, row);
+    checkRows(row);
     console.log(board);
   });
+
+  var checkRows = function(r){
+    var row = r;
+    var rowArray = [];
+
+    for(var i = 0; i < 7; i++){
+      rowArray.push(board[i][row]);
+    }
+    var arrayString = String(rowArray);
+    checkRed(arrayString);
+    checkBlack(arrayString);
+  };
+
+  var checkDiagonals = function(c, r){
+    diagonalBaseLeft(c, r);
+    diagonalBaseRight(c, r);
+  };
 
   var diagonalBaseLeft = function(c, r){
     var column = c;
@@ -59,11 +76,10 @@ $(document).ready(function(){
       column -= 1;
       row -= 1;
     }
-    console.log('column=' + column + 'row=' + row + 'base left');
+    // console.log('column=' + column + 'row=' + row + 'base left');
     var arrayString = diagonalLeftArray(column, row);
     checkRed(arrayString);
     checkBlack(arrayString);
-
   }
 
    var diagonalLeftArray = function(c, r) {
@@ -76,7 +92,6 @@ $(document).ready(function(){
       row += 1;
     }
     while((column < 7) && (row < 6));
-    console.log(valueArray);
     return String(valueArray);
   };
 
@@ -103,7 +118,6 @@ $(document).ready(function(){
       row += 1;
     }
     while((column > -1) && (row < 6));
-    console.log(valueArray);
     return String(valueArray);
   };
 
