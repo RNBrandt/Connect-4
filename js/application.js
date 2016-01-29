@@ -117,13 +117,15 @@ $(document).ready(function(){
 
   var checkRed = function(string) {
     if(string.match('red,red,red,red')){
-      alert("RED WINNNNSSSSS!!!!!");
+      overlayHunterWins.appendTo(document.body);
+      // alert("RED WINNNNSSSSS!!!!!");
     }
   };
 
   var checkBlack = function(string) {
     if(string.match('black,black,black,black')){
-      alert("BLACK WINNNNSSSSS!!!!!")
+      overlayBlackWins.appendTo(document.body);
+      // alert("BLACK WINNNNSSSSS!!!!!")
     }
   };
   // take target array and turn it into a string (ex string(7)
@@ -135,6 +137,9 @@ $(document).ready(function(){
     return columnString;
   };
 
+  var overlayBlackWins = jQuery('<div class="overlay"><p><a href="#">BLACK WINNNNSSSSS!!!!!</a></p></div>');
+
+  var overlayHunterWins = jQuery("<div class='overlay'><p><a href='#'>YOU'VE BEEN HUNTED!!!!!</a></p></div>");
 
 });
 
