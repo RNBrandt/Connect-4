@@ -29,7 +29,7 @@ body {
 
 .row-div {
   display: block;
-  /*border: black solid 2px;*/
+  /*border: black solid 2px; //for debugging*/
   height: 6em;
 }
 /*
@@ -42,15 +42,25 @@ body {
 }*/
 
 .circle-img {
-  width: 100%;
-  height: auto;
+  /*width: 100%;*/
+  width: 5.5em;
+  /*height: auto;*/
+  height: 5.5em;
   border-radius: 100%;
 }
 
-.black-token {
-  background-color: black;
-  min-width: 6em;
-  min-height: 6em;
+.black-token { background-color: black; }
+
+.holes {
+  background-color: white;
+}
+
+.centered {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 4px;
+  display: block;
+  vertical-align: middle;
 }
 
 .display-block { display: block; }

@@ -5,7 +5,7 @@ $(document).ready(function(){
     $("#board").append("<div class='column-div yellow-background-gradient' id=" + thisColumn + "></div>");
 
         for (var j=5; j>=0; j--) {
-      $('#' + thisColumn).append("<div class='row-div' id=" + thisColumn + "-" + j + "></div>");
+      $('#' + thisColumn).append("<div class='row-div' id=" + thisColumn + "-" + j + "><div class='circle-img holes centered'></div></div>");
     }
   }
 
@@ -45,11 +45,12 @@ $(document).ready(function(){
         var relY = e.pageY - parentOffset.top + wrapper.scrollTop();
 
         if (color === 'red'){
-          $('#c' + column + '-' + row).append('<img src="https://scontent-lga3-1.xx.fbcdn.net/hprofile-xpt1/v/t1.0-1/p160x160/11855885_10100926718367775_5383542053096323050_n.jpg?oh=999ca0e8dedca9ddb002bc335b8f141c&oe=573FE88A" class="circle-img"/>');
+          console.log($('#c' + column + '-' + row + ' .holes'));
+          $('#c' + column + '-' + row + ' .holes').replaceWith('<img src="https://scontent-lga3-1.xx.fbcdn.net/hprofile-xpt1/v/t1.0-1/p160x160/11855885_10100926718367775_5383542053096323050_n.jpg?oh=999ca0e8dedca9ddb002bc335b8f141c&oe=573FE88A" class="circle-img centered"/>');
 
           $('#turn-counter').html("Player 2 Turn");
         } else {
-          $('#c' + column + '-' + row).append("<div class='circle-img black-token display-block'></div>");
+          $('#c' + column + '-' + row + ' .holes').replaceWith("<div class='circle-img black-token centered'></div>");
 
           $('#turn-counter').html("Player 1 Turn");
         }
