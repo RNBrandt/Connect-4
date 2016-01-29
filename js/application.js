@@ -47,9 +47,13 @@ $(document).ready(function(){
       $('#c' + column + '-' + row).css('background-color', color);
 
     }
+
     checkDiagonals(column, row);
     checkRows(row);
     console.log(board);
+    var columnString = stringColumn(column);
+    checkRed(columnString);
+    checkBlack(columnString);
   });
 
   var checkRows = function(r){
@@ -132,6 +136,16 @@ $(document).ready(function(){
       alert("BLACK WINNNNSSSSS!!!!!")
     }
   };
+  // take target array and turn it into a string (ex string(7)
+    // then and deliver that array to the check red/ check black methods
+
+  var stringColumn = function(c){
+    var column = c;
+    var columnString = String(board[column]);
+    return columnString;
+  };
+
+
 });
 
 
