@@ -132,16 +132,24 @@ $(document).ready(function(){
 
   var checkRed = function(string) {
     if(string.match('red,red,red,red')){
-      // alert("RED WINNNNSSSSS!!!!!");
-      game_finished = "red";
+      game_finished = "YOU'VE BEEN HUNTED!!!!!!";
+      jQuery('<div class="overlay"><p><a href="#">' + game_finished + '</a></p></div>').appendTo(document.body);
     }
   };
 
   var checkBlack = function(string) {
     if(string.match('black,black,black,black')){
-      // alert("BLACK WINNNNSSSSS!!!!!")
-      game_finished = "black";
+      game_finished = "BLACKNESS WINS!!!!!!";
+      jQuery('<div class="overlay"><p><a href="#">' + game_finished + '</a></p></div>').appendTo(document.body);
     }
+  };
+  // take target array and turn it into a string (ex string(7)
+    // then and deliver that array to the check red/ check black methods
+
+  var stringColumn = function(c){
+    var column = c;
+    var columnString = String(board[column]);
+    return columnString;
   };
 });
 
