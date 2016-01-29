@@ -21,6 +21,7 @@ $(document).ready(function(){
 
   var turns = 0;
   var game_finished;
+  $('#turn-counter').html("Player 1 Turn");
 
   $('.column-div').on('click', function(){
     //gives us column that was clicked on
@@ -35,14 +36,18 @@ $(document).ready(function(){
         var row = board[column].length - 1;
         if (color === 'red'){
           $('#c' + column + '-' + row).append('<img src="https://scontent-lga3-1.xx.fbcdn.net/hprofile-xpt1/v/t1.0-1/p160x160/11855885_10100926718367775_5383542053096323050_n.jpg?oh=999ca0e8dedca9ddb002bc335b8f141c&oe=573FE88A" class="circle-img"/>');
+          $('#turn-counter').html("Player 2 Turn");
         } else {
           $('#c' + column + '-' + row).css('background-color', color);
+          $('#turn-counter').html("Player 1 Turn");
         }
       }
       checkForWin(column, row);
       if(!!game_finished){
         console.log(game_finished);
       }
+    } else {
+
     }
   });
 
