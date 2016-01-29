@@ -1,10 +1,8 @@
-// link = 'https://scontent-lga3-1.xx.fbcdn.net/hprofile-xpt1/v/t1.0-1/p160x160/11855885_10100926718367775_5383542053096323050_n.jpg?oh=999ca0e8dedca9ddb002bc335b8f141c&oe=573FE88A'
-
 $(document).ready(function(){
   for (var i=0; i<7; i++) {
     var thisColumn = 'c' + i;
 
-    $("#board").append("<div class='column-div' id=" + thisColumn + "></div>");
+    $("#board").append("<div class='column-div yellow-background-gradient' id=" + thisColumn + "></div>");
 
         for (var j=5; j>=0; j--) {
       $('#' + thisColumn).append("<div class='row-div' id=" + thisColumn + "-" + j + "></div>");
