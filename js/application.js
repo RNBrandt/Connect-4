@@ -45,11 +45,16 @@ $(document).ready(function(){
       $('#c' + column + '-' + row).css('background-color', color);
 
     }
+    // console.log(column);
+    // console.log(row);
+    stringColumn(column);
     console.log(column);
-    console.log(row);
+    console.log(columnString);
     diagonalBaseLeft(column, row);
     diagonalBaseRight(column,row);
-    console.log(board);
+    checkRed(columnString);
+    checkBlack(columnString);
+    // console.log(board);
   });
 
   var diagonalBaseLeft = function(c, r){
@@ -76,7 +81,7 @@ $(document).ready(function(){
       row += 1;
     }
     while((column < 7) && (row < 6));
-    console.log(valueArray);
+    //console.log(valueArray);
     return String(valueArray);
   };
 
@@ -103,7 +108,7 @@ $(document).ready(function(){
       row += 1;
     }
     while((column > -1) && (row < 6));
-    console.log(valueArray);
+    //console.log(valueArray);
     return String(valueArray);
   };
 
@@ -118,6 +123,16 @@ $(document).ready(function(){
       alert("BLACK WINNNNSSSSS!!!!!")
     }
   };
+  // take target array and turn it into a string (ex string(7)
+    // then and deliver that array to the check red/ check black methods
+
+  var stringColumn = function(array){
+    var column = array
+    columnString = String(board[column]);
+    return columnString;
+  };
+
+
 });
 
 
