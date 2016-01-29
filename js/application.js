@@ -61,8 +61,9 @@ $(document).ready(function(){
     }
     console.log('column=' + column + 'row=' + row + 'base left');
     var arrayString = diagonalLeftArray(column, row);
-    console.log(checkRed(arrayString));
-    console.log(checkBlack(arrayString));
+    checkRed(arrayString);
+    checkBlack(arrayString);
+
   }
 
    var diagonalLeftArray = function(c, r) {
@@ -88,8 +89,8 @@ $(document).ready(function(){
     }
     console.log('column=' + column + 'row=' + row +'base right')
     var arrayString = diagonalRightArray(column, row);
-    console.log(checkRed(arrayString));
-    console.log(checkBlack(arrayString));
+    checkRed(arrayString);
+    checkBlack(arrayString);
   };
 
   var diagonalRightArray = function(c, r) {
@@ -108,13 +109,13 @@ $(document).ready(function(){
 
   var checkRed = function(string) {
     if(string.match('red,red,red,red')){
-      return "RED WINNNNSSSSS!!!!!"
+      alert("RED WINNNNSSSSS!!!!!");
     }
   };
 
   var checkBlack = function(string) {
     if(string.match('black,black,black,black')){
-      return "BLACK WINNNNSSSSS!!!!!"
+      alert("BLACK WINNNNSSSSS!!!!!")
     }
   };
 });
