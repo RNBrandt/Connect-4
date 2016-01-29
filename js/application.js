@@ -43,8 +43,81 @@ $(document).ready(function(){
       board[column].push(color);
       var row = board[column].length - 1;
       $('#c' + column + '-' + row).css('background-color', color);
+
     }
+    console.log(column);
+    console.log(row);
+    diagonalBaseLeft(column, row);
+    diagonalBaseRight(column,row);
     console.log(board);
   });
 
+  var diagonalBaseLeft = function(c, r){
+    var column = c;
+    var row = r;
+    while ((column > 0) && (row > 0)){
+      column -= 1;
+      row -= 1;
+    }
+    console.log('column=' + column + 'row=' + row + 'base left');
+    var arrayString = diagonalLeftArray(column, row);
+    checkRed(arrayString);
+    checkBlack(arrayString);
+
+  }
+
+   var diagonalLeftArray = function(c, r) {
+    var column = c;
+    var row = r;
+    var valueArray = []
+    do {
+      valueArray.push(board[column][row]);
+      column += 1;
+      row += 1;
+    }
+    while((column < 7) && (row < 6));
+    console.log(valueArray);
+    return String(valueArray);
+  };
+
+  var diagonalBaseRight = function(c, r){
+    var column = c;
+    var row = r;
+    while ((column < 6) && (row > 0)){
+      column += 1;
+      row -= 1;
+    }
+    console.log('column=' + column + 'row=' + row +'base right')
+    var arrayString = diagonalRightArray(column, row);
+    checkRed(arrayString);
+    checkBlack(arrayString);
+  };
+
+  var diagonalRightArray = function(c, r) {
+    var column = c;
+    var row = r;
+    var valueArray = []
+    do {
+      valueArray.push(board[column][row]);
+      column -= 1;
+      row += 1;
+    }
+    while((column > -1) && (row < 6));
+    console.log(valueArray);
+    return String(valueArray);
+  };
+
+  var checkRed = function(string) {
+    if(string.match('red,red,red,red')){
+      alert("RED WINNNNSSSSS!!!!!");
+    }
+  };
+
+  var checkBlack = function(string) {
+    if(string.match('black,black,black,black')){
+      alert("BLACK WINNNNSSSSS!!!!!")
+    }
+  };
 });
+
+
