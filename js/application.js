@@ -1,4 +1,4 @@
-// https://scontent-lga3-1.xx.fbcdn.net/hprofile-xpt1/v/t1.0-1/p160x160/11855885_10100926718367775_5383542053096323050_n.jpg?oh=999ca0e8dedca9ddb002bc335b8f141c&oe=573FE88A
+// link = 'https://scontent-lga3-1.xx.fbcdn.net/hprofile-xpt1/v/t1.0-1/p160x160/11855885_10100926718367775_5383542053096323050_n.jpg?oh=999ca0e8dedca9ddb002bc335b8f141c&oe=573FE88A'
 
 $(document).ready(function(){
   var arrayOfColumnNames = [
@@ -44,8 +44,11 @@ $(document).ready(function(){
       //adds piece to board
       board[column].push(color);
       var row = board[column].length - 1;
-      $('#c' + column + '-' + row).css('background-color', color);
-
+      if (color === 'red'){
+        $('#c' + column + '-' + row).append('<img src="https://scontent-lga3-1.xx.fbcdn.net/hprofile-xpt1/v/t1.0-1/p160x160/11855885_10100926718367775_5383542053096323050_n.jpg?oh=999ca0e8dedca9ddb002bc335b8f141c&oe=573FE88A"/>');
+      } else {
+        $('#c' + column + '-' + row).css('background-color', color);
+      }
     }
 
     checkDiagonals(column, row);
