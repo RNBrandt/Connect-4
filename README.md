@@ -1,5 +1,7 @@
 # Connect-4
 
+Reuben, Bernice, Regina, Jonathan
+
 MVP
 - Board
 - Place piece into column
