@@ -21,8 +21,9 @@ $(document).ready(function(){
 
   var turns = 0;
   var game_finished;
+  $('#turn-counter').html("Player 1 Turn");
 
-  $('.column-div').on('click', function(){
+  $('.column-div').on('click', function(e){
     //gives us column that was clicked on
     if(!game_finished) {
       var column = parseInt($(this).attr('id').slice(-1));
@@ -34,21 +35,39 @@ $(document).ready(function(){
         board[column].push(color);
         var row = board[column].length - 1;
 
+        // lines 39-42 are the logic for dropping a circle.
+        console.log($(this));
+        var wrapper = $(this);
+        console.log(wrapper);
+        var parentOffset = wrapper.offset();
+        console.log(parentOffset);
         var relX = e.pageX - parentOffset.left + wrapper.scrollLeft();
         var relY = e.pageY - parentOffset.top + wrapper.scrollTop();
 
         if (color === 'red'){
           $('#c' + column + '-' + row).append('<img src="https://scontent-lga3-1.xx.fbcdn.net/hprofile-xpt1/v/t1.0-1/p160x160/11855885_10100926718367775_5383542053096323050_n.jpg?oh=999ca0e8dedca9ddb002bc335b8f141c&oe=573FE88A" class="circle-img"/>');
+
+          $('#turn-counter').html("Player 2 Turn");
         } else {
-          $('#c' + column + '-' + row).append("<div class='circle-img black-background'></div>");
+          $('#c' + column + '-' + row).append("<div class='circle-img black-token display-block'></div>");
+
+          $('#turn-counter').html("Player 1 Turn");
         }
       }
       checkForWin(column, row);
-      if(!!game_finished){
-        console.log(game_finished);
-      }
+      // if(!!game_finished){
+      //   console.log(game_finished);
+      // }
     }
   });
+
+  // if(!!game_finished) {
+  //   console.log("test")
+  //   $('body').on('click', function(){
+  //     debugger;
+  //     $('.overlay-words').remove();
+  //   })
+  // }
 
   var checkForWin = function(c, r){
     checkDiagonals(c, r);
@@ -138,6 +157,9 @@ $(document).ready(function(){
     if(string.match('red,red,red,red')){
       game_finished = "YOU'VE BEEN HUNTED!!!!!!";
       jQuery('<div class="overlay-words overlay">' + game_finished + '<img src="https://scontent-lga3-1.xx.fbcdn.net/hprofile-xpt1/v/t1.0-1/p160x160/11855885_10100926718367775_5383542053096323050_n.jpg?oh=999ca0e8dedca9ddb002bc335b8f141c&oe=573FE88A" class="fifty-percent-size"/></div>').appendTo(document.body);
+      setTimeout(function() {
+        $('.overlay-words.overlay').fadeOut('slow');
+      }, 2000);
     }
   };
 
@@ -145,6 +167,9 @@ $(document).ready(function(){
     if(string.match('black,black,black,black')){
       game_finished = "BLACKNESS WINS!!!!!!";
       jQuery('<div class="overlay-words overlay">' + game_finished + '</div>').appendTo(document.body);
+      setTimeout(function() {
+        $('.overlay-words.overlay').fadeOut('slow');
+      }, 2000);
     }
   };
   // take target array and turn it into a string (ex string(7)
