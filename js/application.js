@@ -1,22 +1,11 @@
 $(document).ready(function(){
-  var arrayOfColumnNames = [
-    "c0",
-    "c1",
-    "c2",
-    "c3",
-    "c4",
-    "c5",
-    "c6",
-  ];
-
   for (var i=0; i<7; i++) {
-    $("#board").append("<div class='column-div' id=" + arrayOfColumnNames[i] + "></div>");
+    var thisColumn = 'c' + i;
 
-    // console.log($('#' + arrayOfColumnNames[i]));
-    var thisColumn = $('#' + arrayOfColumnNames[i]);
+    $("#board").append("<div class='column-div' id=" + thisColumn + "></div>");
 
-    for (var j=5; j>=0; j--) {
-      $('#' + arrayOfColumnNames[i]).append("<div class='row-div' id=" + arrayOfColumnNames[i] + "-" + j + "></div>");
+        for (var j=5; j>=0; j--) {
+      $('#' + thisColumn).append("<div class='row-div' id=" + thisColumn + "-" + j + "></div>");
     }
   }
 
