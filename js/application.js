@@ -1,24 +1,13 @@
 // link = 'https://scontent-lga3-1.xx.fbcdn.net/hprofile-xpt1/v/t1.0-1/p160x160/11855885_10100926718367775_5383542053096323050_n.jpg?oh=999ca0e8dedca9ddb002bc335b8f141c&oe=573FE88A'
 
 $(document).ready(function(){
-  var arrayOfColumnNames = [
-    "c0",
-    "c1",
-    "c2",
-    "c3",
-    "c4",
-    "c5",
-    "c6",
-  ];
-
   for (var i=0; i<7; i++) {
-    $("#board").append("<div class='column-div' id=" + arrayOfColumnNames[i] + "></div>");
+    var thisColumn = 'c' + i;
 
-    // console.log($('#' + arrayOfColumnNames[i]));
-    var thisColumn = $('#' + arrayOfColumnNames[i]);
+    $("#board").append("<div class='column-div' id=" + thisColumn + "></div>");
 
-    for (var j=5; j>=0; j--) {
-      $('#' + arrayOfColumnNames[i]).append("<div class='row-div' id=" + arrayOfColumnNames[i] + "-" + j + "></div>");
+        for (var j=5; j>=0; j--) {
+      $('#' + thisColumn).append("<div class='row-div' id=" + thisColumn + "-" + j + "></div>");
     }
   }
 
