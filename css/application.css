@@ -46,10 +46,26 @@ body {
 }*/
 
 .circle-img {
-  width: 100%;
-  height: auto;
+  /*width: 100%;*/
+  width: 5.5em;
+  /*height: auto;*/
+  height: 5.5em;
   border-radius: 100%;
 }
+
+.holes {
+  background-color: white;
+}
+
+.centered {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 4px;
+  display: block;
+  vertical-align: middle;
+}
+
+.display-block { display: block; }
 
 .fifty-percent-size {
   width: 50%;
@@ -83,13 +99,9 @@ body {
 
 h1 {
   float: left;
+  margin: 0;
 }
 
-#turn-counter {
-  float: right;
-  margin-top: 50px;
-  margin-right: 50px;
-}
 /*
 div.column-div:hover {
   box-shadow: 0 0 5px #98FB98;

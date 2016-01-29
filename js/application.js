@@ -8,10 +8,14 @@ $(document).ready(function(){
       if(j === 6){
         $('#' + thisColumn).append("<div class='row-div no-background' id=" + thisColumn + "-" + j + "></div>");
       } else {
-        $('#' + thisColumn).append("<div class='row-div' id=" + thisColumn + "-" + j + "></div>");
+        $('#' + thisColumn).append("<div class='row-div' id=" + thisColumn + "-" + j + "><div class='circle-img holes centered'></div></div>");
       }
     }
   }
+
+  $('form').on('submit', function(){
+    location.reload();
+  })
 
   var board = [
     [],
@@ -25,7 +29,6 @@ $(document).ready(function(){
 
   var turns = 0;
   var game_finished;
-  $('#turn-counter').html("Player 1 Turn");
 
   var hover_effect = function(){
     if(turns % 2 === 0) {
@@ -49,8 +52,8 @@ $(document).ready(function(){
 
   hover_effect();
 
+  $('.column-div').on('click', function(e){
 
-  $('.column-div').on('click', function(){
     //gives us column that was clicked on
     if(!game_finished) {
       var column = parseInt($(this).attr('id').slice(-1));
@@ -61,13 +64,23 @@ $(document).ready(function(){
         //adds piece to board
         board[column].push(color);
         var row = board[column].length - 1;
+
+        // lines 39-42 are the logic for dropping a circle.
+        console.log($(this));
+        var wrapper = $(this);
+        console.log(wrapper);
+        var parentOffset = wrapper.offset();
+        console.log(parentOffset);
+        var relX = e.pageX - parentOffset.left + wrapper.scrollLeft();
+        var relY = e.pageY - parentOffset.top + wrapper.scrollTop();
+
         if (color === 'red'){
-          $('#c' + column + '-' + row).append('<img src="https://scontent-lga3-1.xx.fbcdn.net/hprofile-xpt1/v/t1.0-1/p160x160/11855885_10100926718367775_5383542053096323050_n.jpg?oh=999ca0e8dedca9ddb002bc335b8f141c&oe=573FE88A" class="circle-img"/>');
-          $('#turn-counter').html("Player 2 Turn");
+          console.log($('#c' + column + '-' + row + ' .holes'));
+          $('#c' + column + '-' + row + ' .holes').replaceWith('<img src="https://scontent-lga3-1.xx.fbcdn.net/hprofile-xpt1/v/t1.0-1/p160x160/11855885_10100926718367775_5383542053096323050_n.jpg?oh=999ca0e8dedca9ddb002bc335b8f141c&oe=573FE88A" class="circle-img centered"/>');
           $('#c' + column + '-6').empty();
         } else {
-          $('#c' + column + '-' + row).append('<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQ1mB6fWO499QeabseMxpa67okKCEI6-0joJSRhBC-uDa98cn1ctg" class="circle-img"/>');
-          $('#turn-counter').html("Player 1 Turn");
+          $('#c' + column + '-' + row + ' .holes').replaceWith('<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQ1mB6fWO499QeabseMxpa67okKCEI6-0joJSRhBC-uDa98cn1ctg" class="circle-img centered"/>');
+          $('#c' + column + '-' + row + ' .holes').replaceWith("<div class='circle-img black-token centered'></div>");
           $('#c' + column + '-6').empty();
         }
       }
@@ -173,7 +186,7 @@ $(document).ready(function(){
   var checkBlack = function(string) {
     if(string.match('black,black,black,black')){
       game_finished = "THE HUNTER HAS BECOME THE HUNTED!!!!!!";
-      jQuery('<div class="overlay-words overlay">' + game_finished + '</div>').appendTo(document.body);
+      jQuery('<div class="overlay-words overlay">' + game_finished + '<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQ1mB6fWO499QeabseMxpa67okKCEI6-0joJSRhBC-uDa98cn1ctg" class="fifty-percent-size"/></div>').appendTo(document.body);
       setTimeout(function() {
         $('.overlay-words.overlay').fadeOut('slow');
       }, 2000);
