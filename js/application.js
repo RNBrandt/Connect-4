@@ -3,7 +3,6 @@ $(document).ready(function(){
     var thisColumn = 'c' + i;
 
     $("#board").append("<div class='column-div yellow-background-gradient' id=" + thisColumn + "></div>");
-
     for (var j=6; j>=0; j--) {
       if(j === 6){
         $('#' + thisColumn).append("<div class='row-div no-background' id=" + thisColumn + "-" + j + "></div>");
