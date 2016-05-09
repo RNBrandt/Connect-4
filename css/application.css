@@ -12,10 +12,10 @@
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff53d', endColorstr='#ffb029', GradientType=1 );
 }
 
-body {
+/*body {
   width: 45em;
   margin: 0 auto;
-}
+}*/
 #board {
   width: 45em;
   clear: both;
